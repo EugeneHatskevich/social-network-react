@@ -1,0 +1,8 @@
+.navbar {
+    grid-area: navbar;
+    background-color: #2a8900;
+}
+
+.item {
+    color: white;
+}

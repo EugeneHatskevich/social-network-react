@@ -11,22 +11,3 @@
     grid-template-columns: 2fr 10fr;
     grid-gap: 10px;
 }
-
-.header {
-    grid-area: header;
-    background-color: #2a8900;
-}
-
-.header img {
-    width: 80px;
-}
-
-.navbar {
-    grid-area: navbar;
-    background-color: #2a8900;
-}
-
-.content {
-    grid-area: content;
-    background-color: pink;
-}
