@@ -10,15 +10,15 @@ import Settings from "./Components/Settings/Settings";
 
 
 const App = (props) => {
+    debugger
     return (
         <BrowserRouter>
             <div className='app-wrapper'>
                 <Header/>
                 <Navbar/>
                 <div className='app-wrapper-content'>
-                    <Route path='/profile' render={() => <Profile postsData={props.postsData}/>}/>
-                    <Route path='/dialogs' render={() => <Dialogs dialogData={props.dialogData}
-                                                                  messageData={props.messageData}/>}/>
+                    <Route path='/profile' render={() => <Profile data={props.data.profilePage}/>}/>
+                    <Route path='/dialogs' render={() => <Dialogs data={props.data.dialogsPage}/>}/>
                     <Route path='/music' component={Music}/>
                     <Route path='/news' component={News}/>
                     <Route path='/settings' component={Settings}/>

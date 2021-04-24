@@ -3,11 +3,10 @@ import MyPosts from "./MyPosts/MyPosts"
 import ProfileInfo from "./ProfileInfo/ProfileInfo"
 
 const Profile = (props) => {
-    console.log(props.postsData)
     return (
         <div>
             <ProfileInfo />
-            <MyPosts postsData={props.postsData}/>
+            <MyPosts postsData={props.data.postsData}/>
         </div>
     )
 }
