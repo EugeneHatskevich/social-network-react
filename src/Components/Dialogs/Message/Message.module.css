@@ -1,0 +1,12 @@
+.message {
+    display: grid;
+    grid-template-columns: 2fr 2fr;
+}
+
+.myMessage {
+    padding-bottom: 10px;
+}
+
+.friendMessage {
+    padding-top: 10px;
+}
