@@ -1,3 +1,4 @@
+import React from "react";
 import s from "./Message.module.css";
 
 const Message = (props) => {
@@ -17,13 +18,27 @@ const Message = (props) => {
         )
     })
 
+    let newMessage = React.createRef()
+
+    let sendMessage = () => {
+        let textMessage = newMessage.current.value
+
+        alert(textMessage)
+    }
+
     return (
-        <div className={s.message}>
-            <div >
-                {myMessagesElements}
+        <div>
+            <div className={s.message}>
+                <div>
+                    {myMessagesElements}
+                </div>
+                <div>
+                    {friendMessagesElements}
+                </div>
             </div>
-            <div >
-                {friendMessagesElements}
+            <div className={s.textarea}>
+                <textarea ref={newMessage}/>
+                <button onClick={sendMessage}>Send message</button>
             </div>
         </div>
     )

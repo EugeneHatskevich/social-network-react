@@ -10,3 +10,8 @@
 .friendMessage {
     padding-top: 10px;
 }
+
+.textarea {
+    width: 800px;
+    padding-top: 20px;
+}
