@@ -1,53 +1,15 @@
 import React from "react";
 import s from './Users.module.css'
+import axios from "axios";
+import userPhoto from '../../assets/image/img_1.png'
 
 export const Users = (props) => {
 
     if (props.users.length === 0) {
-        props.setUsers(
-            [
-                {
-                    id: 1,
-                    status: 'Hello, world!',
-                    name: 'Eugene',
-                    location: {city: 'Minsk', country: 'Belarus'},
-                    followed: false,
-                    avatar: 'https://whatsism.com/uploads/posts/2018-07/1530546770_rmk_vdjbx10.jpg'
-                },
-                {
-                    id: 2,
-                    status: 'I am not bad)',
-                    name: 'Tanya',
-                    location: {city: 'Minsk', country: 'Belarus'},
-                    followed: false,
-                    avatar: 'https://whatsism.com/uploads/posts/2018-07/1530546770_rmk_vdjbx10.jpg'
-                },
-                {
-                    id: 3,
-                    status: 'We are all mad here',
-                    name: 'Mickey',
-                    location: {city: 'Minsk', country: 'Belarus'},
-                    followed: true,
-                    avatar: 'https://whatsism.com/uploads/posts/2018-07/1530546770_rmk_vdjbx10.jpg'
-                },
-                {
-                    id: 4,
-                    status: 'Crazy frog',
-                    name: 'FrogMan',
-                    location: {city: 'Minsk', country: 'Belarus'},
-                    followed: false,
-                    avatar: 'https://whatsism.com/uploads/posts/2018-07/1530546770_rmk_vdjbx10.jpg'
-                },
-                {
-                    id: 5,
-                    status: 'Mars!',
-                    name: 'Elon',
-                    location: {city: 'Minsk', country: 'Belarus'},
-                    followed: true,
-                    avatar: 'https://whatsism.com/uploads/posts/2018-07/1530546770_rmk_vdjbx10.jpg'
-                }
-            ]
-        )
+
+        axios.get('https://social-network.samuraijs.com/api/1.0/users').then(response => {
+            props.setUsers(response.data.items)
+        })
     }
     return (
         <div>
@@ -55,7 +17,8 @@ export const Users = (props) => {
                 props.users.map(user => <div key={user.id}>
                     <span>
                         <div>
-                            <img className={s.image} src={user.avatar} alt='avatar'/>
+                            <img className={s.image} src={user.photos.small != null ? user.photos.small : userPhoto}
+                                 alt='avatar'/>
                         </div>
                         <div>
                             {user.followed
@@ -74,10 +37,10 @@ export const Users = (props) => {
                         </span>
                         <span>
                             <div>
-                                {user.location.city}
+                                {'u.location.city'}
                             </div>
                             <div>
-                                {user.location.country}
+                                {'u.location.country'}
                             </div>
                         </span>
                     </span>
