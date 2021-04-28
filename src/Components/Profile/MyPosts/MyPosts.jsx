@@ -7,7 +7,7 @@ const MyPosts = (props) => {
 
     let postsElements = props.postsData.map((post) => {
         return (
-            <Post message={post.message} like={post.likesCount}/>
+            <Post key={post.id} message={post.message} like={post.likesCount}/>
         )
     })
 

@@ -9,13 +9,13 @@ const Dialogs = (props) => {
     let messagesElements = props.dialogsPage.messageData.map((message) => {
         return (
             <div>
-                <Message message={message.message}/>
+                <Message key={message.id} message={message.message} />
             </div>
         )
     })
     let dialogsElements = props.dialogsPage.dialogData.map((elem) => {
         return (
-            <DialogItem name={elem.name} id={elem.id} avatar={elem.avatar}/>
+            <DialogItem key={elem.id} name={elem.name} id={elem.id} avatar={elem.avatar} />
         )
     })
     let newMessageText = props.dialogsPage.newMessageText
