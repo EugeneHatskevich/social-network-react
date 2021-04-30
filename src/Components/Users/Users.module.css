@@ -2,3 +2,7 @@
     width: 100px;
     border-radius: 50px;
 }
+
+.selectedName {
+    font-weight: bold;
+}
