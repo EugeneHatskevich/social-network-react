@@ -8,7 +8,7 @@ const TOOGLE_IS_FETCHING = 'TOOGLE_IS_FETCHING'
 let initialState = {
     users: [
     ],
-    pageSize: 2,
+    pageSize: 10,
     totalUsersCount: 0,
     currentPage: 1,
     isFetching: false
@@ -20,7 +20,7 @@ export const usersReducer = (state = initialState, action) => {
             return {
                 ...state,
                 users: state.users.map((user) => {
-                    if (user._id === action.userId) {
+                    if (user.id === action.userId) {
                         return {...user, followed: true}
                     }
                     return user
@@ -30,7 +30,7 @@ export const usersReducer = (state = initialState, action) => {
             return {
                 ...state,
                 users: state.users.map((user) => {
-                    if (user._id === action.userId) {
+                    if (user.id === action.userId) {
                         return {...user, followed: false}
                     }
                     return user
@@ -61,42 +61,42 @@ export const usersReducer = (state = initialState, action) => {
     }
 }
 
-export const followAC = (userId) => {
+export const follow = (userId) => {
     return {
         type: FOLLOW,
         userId: userId
     }
 }
 
-export const unfollowAC = (userId) => {
+export const unFollow = (userId) => {
     return {
         type: UNFOLLOW,
         userId: userId
     }
 }
 
-export const setUsersAC = (users) => {
+export const setUsers = (users) => {
     return {
         type: SET_USERS,
         users: users
     }
 }
 
-export const setCurrentPageAC = (page) => {
+export const setCurrentPage = (page) => {
     return {
         type: SET_CURRENT_PAGE,
         currentPage: page
     }
 }
 
-export const setTotalUsersCountAC = (totalCount) => {
+export const setTotalUsersCount = (totalCount) => {
     return {
         type: SET_TOTAL_USERS_COUNT,
         totalCount : totalCount
     }
 }
 
-export const setFetchingAC = (fetching) => {
+export const toogleIsFetching = (fetching) => {
     return {
         type: TOOGLE_IS_FETCHING,
         isFetching: fetching

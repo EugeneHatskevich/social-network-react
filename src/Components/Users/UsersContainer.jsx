@@ -1,11 +1,11 @@
 import {connect} from "react-redux";
 import {
-    followAC,
-    setCurrentPageAC,
-    setFetchingAC,
-    setTotalUsersCountAC,
-    setUsersAC,
-    unfollowAC
+    follow,
+    setCurrentPage,
+    toogleIsFetching,
+    setTotalUsersCount,
+    setUsers,
+    unFollow
 } from "../../redux/users-reducer";
 import axios from "axios"
 import React from "react"
@@ -16,9 +16,9 @@ class UsersContainer extends React.Component {
 
     componentDidMount() {
         this.props.toogleIsFetching(true)
-        axios.get(`http://127.0.0.1:5000/api/users?pageNumber=${this.props.currentPage}&pageSize=${this.props.pageSize}`).then(response => {
+        axios.get(`https://social-network.samuraijs.com/api/1.0/users?page=${this.props.currentPage}&count=${this.props.pageSize}`).then(response => {
             this.props.toogleIsFetching(false)
-            this.props.setUsers(response.data.users)
+            this.props.setUsers(response.data.items)
             this.props.setTotalUsersCount(response.data.totalCount)
         })
     }
@@ -26,12 +26,11 @@ class UsersContainer extends React.Component {
     onPageChanged = (page) => {
         this.props.toogleIsFetching(true)
         this.props.setCurrentPage(page)
-        axios.get(`http://127.0.0.1:5000/api/users?pageNumber=${page}&pageSize=${this.props.pageSize}`).then(response => {
+        axios.get(`https://social-network.samuraijs.com/api/1.0/users?page=${page}&count=${this.props.pageSize}`).then(response => {
             this.props.toogleIsFetching(false)
-            this.props.setUsers(response.data.users)
+            this.props.setUsers(response.data.items)
         })
     }
-
     render() {
         return (
             <>
@@ -58,34 +57,10 @@ let mapStateToProps = (state) => {
     }
 }
 
-let mapDispatchToProps = (dispatch) => {
-    return {
-        follow: (userId) => {
-            axios.put('http://127.0.0.1:5000/api/users/update', {userId: userId, follow: true}).then(response => {
-                console.log("Success")
-            })
-            dispatch(followAC(userId))
-        },
-        unFollow: (userId) => {
-            axios.put('http://127.0.0.1:5000/api/users/update', {userId: userId, follow: false}).then(response => {
-                console.log("Success")
-            })
-            dispatch(unfollowAC(userId))
-        },
-        setUsers: (users) => {
-            dispatch(setUsersAC(users))
-        },
-        setCurrentPage: (page) => {
-            dispatch(setCurrentPageAC(page))
-        },
-        setTotalUsersCount: (totalCount) => {
-            dispatch(setTotalUsersCountAC(totalCount))
-        },
-        toogleIsFetching: (fetching) => {
-            dispatch(setFetchingAC(fetching))
-        }
-    }
-}
-
-
-export default connect(mapStateToProps, mapDispatchToProps)(UsersContainer)
+export default connect(mapStateToProps, {
+    follow,
+    unFollow,
+    setUsers,
+    setCurrentPage,
+    setTotalUsersCount,
+    toogleIsFetching })(UsersContainer)
